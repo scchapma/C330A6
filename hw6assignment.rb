@@ -5,6 +5,7 @@
 
 class MyPiece < Piece
   def initialize (point_array, board)
+    puts ("Enter MyPiece constructor.")
     super(point_array, board)
   end
 
@@ -54,6 +55,14 @@ end
 class MyTetris < Tetris
   def initialize
     super
+  end
+
+  def set_board
+    @canvas = TetrisCanvas.new
+    @board = MyBoard.new(self)
+    @canvas.place(@board.block_size * @board.num_rows + 3,
+                  @board.block_size * @board.num_columns + 6, 24, 80)
+    @board.draw
   end
 
   # your enhancements here
