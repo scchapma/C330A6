@@ -11,7 +11,8 @@ class MyPiece < Piece
 
   # The constant All_My_Pieces should be declared here
   # class array holding all the pieces and their rotations
-  All_My_Pieces = [[[[0, 0], [1, 0], [0, 1], [1, 1]]],  # square (only needs one)
+  All_My_Pieces = [rotations([[0,0]]),
+  [[[0, 0], [1, 0], [0, 1], [1, 1]]],  # square (only needs one)
   rotations([[0, 0], [-1, 0], [1, 0], [0, -1]]), # T
   [[[0, 0], [-1, 0], [1, 0], [2, 0]], # long (only needs two)
   [[0, 0], [0, -1], [0, 1], [0, 2]]],
@@ -25,7 +26,7 @@ class MyPiece < Piece
   rotations([[0, 0], [1,0], [0, 1]]), # new three-point  
   rotations([[0, -1], [1,-1], [0, 0], [1,0], [0,1]])] # square with appendage
   
-  My_Cheat_Piece = [[[0, 0]]]
+  My_Cheat_Piece = [rotations([[0, 0]])]
    
   #def self.next_piece (board)    
   #  MyPiece.new(All_My_Pieces.sample, board)
@@ -82,9 +83,9 @@ class MyBoard < Board
 
   def cheat
      if score >= 100
-      puts ("Score: " + self.score.to_s)
+      #puts ("Score: " + self.score.to_s)
       self.score = (self.score - 100)
-      puts ("Score: " + self.score.to_s)
+      #puts ("Score: " + self.score.to_s)
       @@cheat_flag = true
      end 
   end
