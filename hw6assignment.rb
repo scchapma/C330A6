@@ -18,12 +18,12 @@ class MyPiece < Piece
   rotations([[0, 0], [0, -1], [0, 1], [-1, 1]]), # inverted L
   rotations([[0, 0], [-1, 0], [0, -1], [1, -1]]), # S
   rotations([[0, 0], [1, 0], [0, -1], [-1, -1]]), # Z 
-  #three new shapes
+  
+  # your enhancements here
   rotations([[0, 0], [-1,0], [1, 0], [2, 0], [-2, 0]]), #long-long
   rotations([[0, 0], [1,0], [0, 1]]), # new three-point  
   rotations([[0, -1], [1,-1], [0, 0], [1,0], [0,1]])] # square with appendage
-  
-  # your enhancements here
+   
   def self.next_piece (board)    
     MyPiece.new(All_My_Pieces.sample, board)
   end
@@ -35,8 +35,7 @@ class MyBoard < Board
     super(game)
     @current_block = MyPiece.next_piece(self)    
   end
-
-  # your enhancements here
+ 
   def next_piece
     @current_block = MyPiece.next_piece(self)
     @current_pos = nil
@@ -56,6 +55,7 @@ class MyBoard < Board
     @delay = [@delay - 2, 80].max
   end
 
+  # your enhancements here
   # rotates the current piece 180 degrees
   def rotate_180
     if !game_over? and @game.is_running?
