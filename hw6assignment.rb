@@ -1,31 +1,45 @@
 # Programming Languages, Homework 6, hw6runner.rb
 
-# This is the only file you turn in, so do not modify the other files as
-# part of your solution.
+# Steve Chapman (#V00190898)
+
+# March 20, 2015
+
+# This is the only file you turn in, so do not modify the other 
+# files as part of your solution.
 
 class MyPiece < Piece
   def initialize (point_array, board)
     super(point_array, board)
-    #@@cheat = false
   end
 
   # The constant All_My_Pieces should be declared here
   # class array holding all the pieces and their rotations
-  All_My_Pieces = [rotations([[0,0]]),
-  [[[0, 0], [1, 0], [0, 1], [1, 1]]],  # square (only needs one)
-  rotations([[0, 0], [-1, 0], [1, 0], [0, -1]]), # T
-  [[[0, 0], [-1, 0], [1, 0], [2, 0]], # long (only needs two)
-  [[0, 0], [0, -1], [0, 1], [0, 2]]],
-  rotations([[0, 0], [0, -1], [0, 1], [1, 1]]), # L
-  rotations([[0, 0], [0, -1], [0, 1], [-1, 1]]), # inverted L
-  rotations([[0, 0], [-1, 0], [0, -1], [1, -1]]), # S
-  rotations([[0, 0], [1, 0], [0, -1], [-1, -1]]), # Z 
+  All_My_Pieces = [
+                  # square (only needs one)
+                  [[[0, 0], [1, 0], [0, 1], [1, 1]]], 
+                  # T
+                  rotations([[0, 0], [-1, 0], [1, 0], [0, -1]]), 
+                  # long (only needs two)
+                  [[[0, 0], [-1, 0], [1, 0], [2, 0]], 
+                  [[0, 0], [0, -1], [0, 1], [0, 2]]],
+                  # L
+                  rotations([[0, 0], [0, -1], [0, 1], [1, 1]]), 
+                  # inverted L
+                  rotations([[0, 0], [0, -1], [0, 1], [-1, 1]]),
+                  # S
+                  rotations([[0, 0], [-1, 0], [0, -1], [1, -1]]), 
+                  # Z 
+                  rotations([[0, 0], [1, 0], [0, -1], [-1, -1]]), 
+  
+                  #new pieces
+                  #extra long
+                  rotations([[0, 0], [-1,0], [1, 0], [2, 0], [-2, 0]]),
+                  # new three-point  
+                  rotations([[0, 0], [1,0], [0, 1]]),
+                  # square with appendage  
+                  rotations([[0, -1], [1,-1], [0, 0], [1,0], [0,1]])] 
   
   # your enhancements here
-  rotations([[0, 0], [-1,0], [1, 0], [2, 0], [-2, 0]]), #long-long
-  rotations([[0, 0], [1,0], [0, 1]]), # new three-point  
-  rotations([[0, -1], [1,-1], [0, 0], [1,0], [0,1]])] # square with appendage
-  
   My_Cheat_Piece = [rotations([[0, 0]])]
    
   #def self.next_piece (board)    
@@ -82,10 +96,8 @@ class MyBoard < Board
   end
 
   def cheat
-     if score >= 100
-      #puts ("Score: " + self.score.to_s)
-      self.score = (self.score - 100)
-      #puts ("Score: " + self.score.to_s)
+     if score >= 100      
+      self.score = (self.score - 100)      
       @@cheat_flag = true
      end 
   end
