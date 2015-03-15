@@ -46,6 +46,10 @@ class MyBoard < Board
     @@cheat_flag = false
     @current_block = MyPiece.next_piece(self, @@cheat_flag)    
   end
+
+  def score= x
+    @score = x
+  end
  
   def next_piece 
     @current_block = MyPiece.next_piece(self, @@cheat_flag)
@@ -77,7 +81,12 @@ class MyBoard < Board
   end
 
   def cheat
-     @@cheat_flag = true 
+     if score >= 100
+      puts ("Score: " + self.score.to_s)
+      self.score = (self.score - 100)
+      puts ("Score: " + self.score.to_s)
+      @@cheat_flag = true
+     end 
   end
 
 end
