@@ -6,6 +6,7 @@
 class MyPiece < Piece
   def initialize (point_array, board)
     super(point_array, board)
+    #@@cheat = false
   end
 
   # The constant All_My_Pieces should be declared here
@@ -23,9 +24,18 @@ class MyPiece < Piece
   rotations([[0, 0], [-1,0], [1, 0], [2, 0], [-2, 0]]), #long-long
   rotations([[0, 0], [1,0], [0, 1]]), # new three-point  
   rotations([[0, -1], [1,-1], [0, 0], [1,0], [0,1]])] # square with appendage
+  
+  My_Cheat_Piece = [[[0, 0]]]
    
-  def self.next_piece (board)    
-    MyPiece.new(All_My_Pieces.sample, board)
+  #def self.next_piece (board)    
+  #  MyPiece.new(All_My_Pieces.sample, board)
+  #end
+
+  def self.next_piece (board, cheat_flag)    
+    if cheat_flag 
+    then MyPiece.new(My_Cheat_Piece[0], board)
+    else MyPiece.new(All_My_Pieces.sample, board)
+    end
   end
 
 end
@@ -33,11 +43,13 @@ end
 class MyBoard < Board
   def initialize (game)
     super(game)
-    @current_block = MyPiece.next_piece(self)    
+    @@cheat_flag = false
+    @current_block = MyPiece.next_piece(self, @@cheat_flag)    
   end
  
-  def next_piece
-    @current_block = MyPiece.next_piece(self)
+  def next_piece 
+    @current_block = MyPiece.next_piece(self, @@cheat_flag)
+    @@cheat_flag = false
     @current_pos = nil
   end
 
@@ -64,6 +76,10 @@ class MyBoard < Board
     draw
   end
 
+  def cheat
+     @@cheat_flag = true 
+  end
+
 end
 
 class MyTetris < Tetris
@@ -83,6 +99,7 @@ class MyTetris < Tetris
   # your enhancements here
   def my_key_binding 
      @root.bind('u', lambda {@board.rotate_180})
+     @root.bind('c', lambda {@board.cheat})
   end  
 
 end
