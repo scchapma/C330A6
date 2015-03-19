@@ -58,8 +58,8 @@ end
 class MyBoard < Board
   def initialize (game)
     super(game)
-    @@cheat_flag = false
-    @current_block = MyPiece.next_piece(self, @@cheat_flag)    
+    @cheat_flag = false
+    @current_block = MyPiece.next_piece(self, @cheat_flag)    
   end
 
   def score= x
@@ -67,8 +67,8 @@ class MyBoard < Board
   end
  
   def next_piece 
-    @current_block = MyPiece.next_piece(self, @@cheat_flag)
-    @@cheat_flag = false
+    @current_block = MyPiece.next_piece(self, @cheat_flag)
+    @cheat_flag = false
     @current_pos = nil
   end
 
@@ -98,7 +98,7 @@ class MyBoard < Board
   def cheat
      if score >= 100      
       self.score = (self.score - 100)      
-      @@cheat_flag = true
+      @cheat_flag = true
      end 
   end
 
